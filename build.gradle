@@ -12,9 +12,9 @@ sourceCompatibility = 1.8
 repositories {
     jecenter()
     mavenCentral()
-    maven(
+    maven {
       url 'https://plugins.gradle.org/m2'
-    )
+    }
 }
 
 dependencies {
