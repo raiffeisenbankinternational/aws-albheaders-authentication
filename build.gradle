@@ -10,7 +10,11 @@ version '1.0.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
+    jecenter()
     mavenCentral()
+    maven(
+      url 'https://plugins.gradle.org/m2'
+    )
 }
 
 dependencies {
