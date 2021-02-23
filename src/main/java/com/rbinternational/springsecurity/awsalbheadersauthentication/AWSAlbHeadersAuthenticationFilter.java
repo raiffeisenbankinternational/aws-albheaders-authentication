@@ -1,7 +1,5 @@
 package com.rbinternational.springsecurity.awsalbheadersauthentication;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -25,8 +23,8 @@ import java.io.IOException;
  *         fails an {@link AuthenticationException} is immediately thrown.
  *     </li>
  *     <li>
- *         If the extraction is successful and there is a {@link AWSAlbHeadersAuthenticationTokenValidater} set then a
- *         validation is performed, using {@link AWSAlbHeadersAuthenticationTokenValidater#validate(AWSAlbHeadersAuthenticationToken)}
+ *         If the extraction is successful and there is a {@link AWSAlbHeadersAuthenticationTokenValidator} set then a
+ *         validation is performed, using {@link AWSAlbHeadersAuthenticationTokenValidator#validate(AWSAlbHeadersAuthenticationToken)}
  *         method. The validater can report invalid tokens by throwing an {@link AuthenticationException}.</li>
  *     <li>
  *         If eveyrthing goes well then the {@link AWSAlbHeadersAuthenticationProvider#authenticate(Authentication)} is
@@ -45,7 +43,7 @@ public class AWSAlbHeadersAuthenticationFilter extends AbstractAuthenticationPro
 
     private final Logger logger = LoggerFactory.getLogger(AWSAlbHeadersAuthenticationFilter.class);
 
-    private AWSAlbHeadersAuthenticationTokenValidater authenticationTokenValidater = null;
+    private AWSAlbHeadersAuthenticationTokenValidator authenticationTokenValidater = null;
 
 
     private AuthenticationConverter authenticationConverter = new AWSAlbHeadersAuthenticationConverter();
@@ -60,7 +58,7 @@ public class AWSAlbHeadersAuthenticationFilter extends AbstractAuthenticationPro
      *
      * @param authenticationTokenValidater
      */
-    public void setAuthenticationTokenValidater(AWSAlbHeadersAuthenticationTokenValidater authenticationTokenValidater) {
+    public void setAuthenticationTokenValidater(AWSAlbHeadersAuthenticationTokenValidator authenticationTokenValidater) {
         this.authenticationTokenValidater = authenticationTokenValidater;
     }
 

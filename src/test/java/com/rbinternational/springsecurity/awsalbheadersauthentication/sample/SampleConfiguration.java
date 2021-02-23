@@ -1,9 +1,6 @@
 package com.rbinternational.springsecurity.awsalbheadersauthentication.sample;
 
-import com.rbinternational.springsecurity.awsalbheadersauthentication.AWSAlbHeadersAuthenticationFilter;
-import com.rbinternational.springsecurity.awsalbheadersauthentication.AWSAlbHeadersAuthenticationProvider;
-import com.rbinternational.springsecurity.awsalbheadersauthentication.AWSAlbHeadersAuthenticationTokenValidater;
-import com.rbinternational.springsecurity.awsalbheadersauthentication.AWSAlbHeadersAuthenticationUserDetailsManager;
+import com.rbinternational.springsecurity.awsalbheadersauthentication.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,7 +13,7 @@ import org.springframework.security.web.authentication.AnonymousAuthenticationFi
 @EnableGlobalMethodSecurity(
         securedEnabled = true
 )
-public class SampleConfiguration extends WebSecurityConfigurerAdapter {
+public class SampleConfiguration extends AWSAlbHeadersAuthenticationAbstractConfiguration {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -26,23 +23,9 @@ public class SampleConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().anyRequest().permitAll();
     }
 
-    protected AWSAlbHeadersAuthenticationFilter awsAlbAuthenticationFilter() throws Exception {
-        AWSAlbHeadersAuthenticationFilter filter = new AWSAlbHeadersAuthenticationFilter("/");
-        filter.setAuthenticationTokenValidater(authTokenValidater());
-        filter.setAuthenticationManager(authenticationManagerBean());
-        return filter;
-    }
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(awsAlbHeadersAuthenticationProvider());
-    }
-
-    @Bean
-    protected AWSAlbHeadersAuthenticationProvider awsAlbHeadersAuthenticationProvider() {
-        AWSAlbHeadersAuthenticationProvider provider = new AWSAlbHeadersAuthenticationProvider();
-        provider.setUserDetailsManager(awsAlbHeadersAuthenticationUserDetailsManager());
-        return provider;
     }
 
     @Bean
@@ -53,7 +36,8 @@ public class SampleConfiguration extends WebSecurityConfigurerAdapter {
         return userDetailsManager;
     }
 
-    protected AWSAlbHeadersAuthenticationTokenValidater authTokenValidater() {
+    @Bean
+    protected AWSAlbHeadersAuthenticationTokenValidator authTokenValidator() {
         return token -> {};
     }
 }
