@@ -1,3 +1,5 @@
+[![CodeQL](https://github.com/raiffeisenbankinternational/aws-albheaders-authentication/actions/workflows/codeql-analysis.yaml/badge.svg)](https://github.com/raiffeisenbankinternational/aws-albheaders-authentication/actions/workflows/codeql-analysis.yaml) [![Java CI](https://github.com/raiffeisenbankinternational/aws-albheaders-authentication/actions/workflows/javaci.yaml/badge.svg)](https://github.com/raiffeisenbankinternational/aws-albheaders-authentication/actions/workflows/javaci.yaml)
+
 # AWS ALB Headers Authentication
 
 This is a spring security authentication filter, implementing authentication for applications deployed behind an AWS ALB with authentication rule.
